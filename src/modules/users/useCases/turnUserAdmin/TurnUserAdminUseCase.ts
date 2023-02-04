@@ -10,6 +10,15 @@ class TurnUserAdminUseCase {
 
   execute({ user_id }: IRequest): User {
     // Complete aqui
+    const turnAdmin = this.usersRepository.findById(user_id);
+
+    if (!turnAdmin) {
+      throw new Error("User not found!");
+    }
+
+    const userAdmin = this.usersRepository.turnAdmin(turnAdmin);
+
+    return userAdmin;
   }
 }
 
